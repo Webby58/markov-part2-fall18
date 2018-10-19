@@ -2,6 +2,8 @@ This is the analysis for Markov Part 2, Fall 2018
 
 Include your name and net id here. Answer the questions from the assignment 
 that are reproduced below
+Kabe Webster
+kgw13
 
 (1) Determine (from running Benchmark.java) how long it takes for 
 BaseMarkov to generate 2,000, 4,000, 8,000, 16,000, and 32,000 
@@ -11,7 +13,31 @@ The program also generates 4,096 characters using texts that increase in
 size from 496,768 characters to 4,967,680 characters (10 times the number).  
 Do you the timings support the O(NT) analysis for BaseMarkov?
 
+Timings Found: 
+2,000 Characters: 0.230
+4,000 Characters: 0.475
+8,000 Characters: 0.905
+16,000 Characters: 1.781
+32,000 Characters: 3.580
 
+Increasing Text Sizes:
+0.528	507914	4096
+1.058	1015828	4096
+1.579	1523742	4096
+2.075	2031656	4096
+2.560	2539570	4096
+3.195	3047484	4096
+3.610	3555398	4096
+4.169	4063312	4096
+4.747	4571226	4096
+5.187	5079140	4096
+
+The timings that were attained from the program support the program because the T in the code is represented by the Characters. 
+If the characters double the time doubles. Following this train of thought, when the text size is increased by about 500,000 each 
+time, the time should therefore also increase by the same constant each time, in this case, about .5 seconds. With these numbers in 
+hand, it is seen that the relation is linear. Also, GetFollows is essentially doing N*T because it has be called for every character
+when a new random character is generated. Furthering the linear relationship, when the text size increases from roughly 500,000
+to 5 million, the time also increases by a factor of ten. Therefore, this further backs up the conclusion the O(N*T) analysis. 
 
 (2) Determine (from running Benchmark.java) how long it takes for 
 EfficientMarkov to generate 2,000, 4,000, 8,000, 16,000, and 32,000 
@@ -21,7 +47,76 @@ The program also generates 4,096 characters using texts that increase in
 size from 496,768 characters to 4,967,680 characters (10 times the number).  
 Do you the timings support the O(N+T) analysis for EfficientMarkov?
 
+Timings Found: 
+2,000 Characters: 0.169
+4,000 Characters: 0.139
+8,000 Characters: 0.108
+16,000 Characters: 0.132
+32,000 Characters: 0.148
+
+Increasing Text Sources
+0.114	507914	4096
+0.285	1015828	4096
+0.505	1523742	4096
+0.572	2031656	4096
+0.713	2539570	4096
+1.366	3047484	4096
+1.692	3555398	4096
+1.816	4063312	4096
+2.131	4571226	4096
+
+When looking at this, because T is much smaller here, it makes sense that efficientMarkov runs a lot faster than BaseMarkov. 
+For example, when looking at the 2000 through 32000 character example, the Text size is a very large number while the characters are a small number. 
+Therefore, this makes the number gotten for 2000 - 32000 characters because the text size is so much bigger that adding the characters does very little
+to change the time returned. However in the second part, the text size is changing from a big number to an even bigger number. Therefore, the time should be 
+increasing because it will take longer to go through the text file. Keeping all of this in mind, the O(N +T) analysis is supported. 
+
 (3)The tests in the class Benchmark use an order-5 Markov Model. 
 Run tests that you think are appropriate to determine if the order of the 
 Markov Model has a significant impact on the running time for BaseMarkov. 
 Explain your reasoning.
+
+time	source	#chars   
+0.268	507914	2000
+0.542	507914	4000
+1.032	507914	8000
+2.092	507914	16000
+4.080	507914	32000
+
+0.520	507914	4096
+0.990	1015828	4096
+1.593	1523742	4096
+2.013	2031656	4096
+2.541	2539570	4096
+3.283	3047484	4096
+3.873	3555398	4096
+4.250	4063312	4096
+4.699	4571226	4096
+5.213	5079140	4096
+
+time	source	#chars
+0.293	507914	2000
+0.527	507914	4000
+1.076	507914	8000
+2.089	507914	16000
+4.310	507914	32000
+
+0.515	507914	4096
+1.048	1015828	4096
+1.646	1523742	4096
+2.125	2031656	4096
+2.782	2539570	4096
+3.447	3047484	4096
+3.808	3555398	4096
+4.461	4063312	4096
+4.948	4571226	4096
+5.603	5079140	4096
+
+Finished tests
+
+Finished tests
+
+The above results were obtained from running the benchmark with order 2. Therefore, it is reasonable to say that
+the values changed very little when the order was changed. Also, when order 7 was ran the numbers obtained were 
+quite similar to the order 2 numbers. Therefore, it is reasonable to say that the order does not have 
+a significant effect on the run time for BaseMarkov.

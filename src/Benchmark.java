@@ -10,7 +10,7 @@ import java.util.*;
 
 public class Benchmark {
 	
-	private static final int TRIALS = 5; // number of trials for each run
+	private static final int TRIALS = 7; // number of trials for each run
 
 	
 	/**
@@ -87,9 +87,9 @@ public class Benchmark {
 		File file = new File("data/"+fileName);
 		double[] data;
 		String source = TextSource.textFromFile(file);
-		int[] sizes = {100,200,400,800,1600,3200,6400,12800};
+		int[] sizes = {2000,4000,8000,16000,32000};
 		int order = 5;
-		MarkovInterface<String> model = new BaseMarkov(order);
+		MarkovInterface<String> model = getMarkov(order);
 		
 		// call benchmark and ignore value, first trial generates bogus data
 		data = benchmark(model,source,1000);
